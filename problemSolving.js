@@ -64,3 +64,57 @@ console.log(charCount("hello"));
 // - Can you think of other ways to refactor?
 // - How have other people solved this problem?
 
+const charCountTwo = (str) => {
+    let obj = {};
+    for(let char of str) {
+        char = char.toLowerCase();
+        if(/[a-z0-9]/.test(char)){ //how he weeds out spaces or characters that aren't numbers or letters
+            if(obj[char] > 0) {
+                obj[char]++;
+            } else{
+                    obj[char] = 1;
+            }
+        }
+        }
+        return obj;
+    };
+
+    console.log(charCountTwo("hello"));
+
+
+const charCountThree = (str) => {
+    let obj = {};
+    for(let char of str) {
+        char = char.toLowerCase();
+        if(/[a-z0-9]/.test(char)){ //how he weeds out spaces or characters that aren't numbers or letters
+            obj[char] = ++obj[char] || 1; // if object is truthy, if true then add 1, if false set it equal to 1
+        } 
+    }
+        return obj;
+};
+
+    console.log(charCountThree("hello"));
+
+const isAlphaNumeric = (char) => {
+    let code = char.charCodeAt(0);
+    if (!(code > 47 && code < 58) && // numeric (0-9)
+    !(code > 64 && code < 91) && // upper alpha (A-Z)
+    !(code > 96 && code < 123)) {
+        return false;
+    }
+    return true;
+}
+
+const charCountFour = (str) => {
+    let obj = {};
+    for(let char of str) {
+        char = char.toLowerCase();
+        if(isAlphaNumeric(char)){ // how he weeds out spaces or characters that aren't numbers or letters
+            obj[char] = ++obj[char] || 1; // if object is truthy, if true then add 1, if false set it equal to 1
+        } 
+    }
+        return obj;
+};
+
+    console.log(charCountFour("hello there"));
+
